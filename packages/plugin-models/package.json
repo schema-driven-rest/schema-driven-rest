@@ -1,0 +1,33 @@
+{
+  "name": "@sdr/models",
+  "version": "1.1.0",
+  "main": "output/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "bump": "yarn build && yarn version --patch --no-git-tag-version ",
+    "publish-plugin": "yarn build && yarn version --patch --no-git-tag-version && npm publish --access public"
+  },
+  "peerDependencies": {
+    "graphql": "14.6.0"
+  },
+  "dependencies": {
+    "@graphql-codegen/plugin-helpers": "1.12.2",
+    "@graphql-codegen/typescript": "1.12.2",
+    "@graphql-codegen/visitor-plugin-common": "1.12.2",
+    "@sdr/core": "latest",
+    "auto-bind": "4.0.0",
+    "graphql": "14.6.0",
+    "tslib": "1.11.0"
+  },
+  "resolutions": {
+    "graphql": "14.6.0"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^13.7.6",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.2"
+  }
+}

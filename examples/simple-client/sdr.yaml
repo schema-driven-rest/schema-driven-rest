@@ -1,0 +1,11 @@
+schema: ../common/server-schema/*.graphql
+ignoreSchema: ../common/server-schema/base.graphql
+prettier: ./.prettierrc
+config:
+  @sdr/raw-fetch:
+    baseClientLocation: ./baseClient
+generates:
+  api/api.ts:
+    plugins:
+      - @sdr/raw-fetch
+      - @sdr/models

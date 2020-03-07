@@ -1,0 +1,33 @@
+type User @controller(path: "user") {
+  login(request: LoginRequest!): LoginResponse!
+    @request(method: POST, path: "login")
+
+  getUser(request: GetUserRequest!): UserResponse!
+    @request(method: GET, path: "user")
+
+  updateUser(request: UpdateUserRequest!): UserResponse!
+    @request(method: POST, path: "update-user")
+}
+
+type LoginRequest @model {
+  username: String!
+}
+type LoginResponse @model {
+  authorized: Boolean!
+  jwt: String!
+  details: [String]
+}
+type GetUserRequest @model {
+  userId: String!
+}
+type UpdateUserRequest @model {
+  email: String!
+  eyeColor: Int!
+}
+type UserResponse @model {
+  user: UserModel!
+}
+type UserModel @model {
+  email: String!
+  eyeColor: Int!
+}

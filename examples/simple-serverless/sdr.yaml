@@ -1,0 +1,18 @@
+schema: ../common/server-schema/*.graphql
+ignoreSchema: ../common/server-schema/base.graphql
+prettier: ./.prettierrc
+config: {}
+generates:
+  api/apiBase.ts:
+    plugins:
+      - "@sdr/serverless-api-base#classes"
+      - "@sdr/models"
+  serverless-api.yaml:
+    plugins:
+      - "@sdr/serverless-api-base#serverless"
+  handler.ts:
+    plugins:
+      - "@sdr/serverless-api-base#handlers"
+  api/validation.ts:
+    plugins:
+      - "@sdr/validate-models"

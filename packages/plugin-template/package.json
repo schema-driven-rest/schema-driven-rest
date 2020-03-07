@@ -1,0 +1,19 @@
+{
+  "name": "@sdr/plugin-template",
+  "version": "1.1.0",
+  "main": "output/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "bump": "yarn build && yarn version --patch"
+  },
+  "dependencies": {
+    "@sdr/core": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.6",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.2"
+  }
+}

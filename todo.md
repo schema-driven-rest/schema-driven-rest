@@ -1,0 +1,48 @@
+- [x] update plugin text to look like this: https://graphql-code-generator.com/docs/plugins/typescript-vue-apollo
+- [x] add details about hwo this was inspired by  
+- [x] https://v2.docusaurus.io/docs/using-plugins do this for npm yarn install
+- [x] add cli command pregen graphql 
+- [x] add responsive support to codegen component
+- [x] add cli command init to create sdr.yaml
+- [x] rename to sdr
+- [x] test deploy
+- [x] deploy plugins
+- [x] get logo
+- [x] stress that there is no runtime, this is just a generator 
+- [x] add basic readme's
+- [x] figure out yarn link for dev 
+- [x] add plugin template
+- [x] fix validation models
+- [x] add union support for validation
+- [x] add support for implements type in validate
+- [x] add watch
+- [x] make yargs work withou --
+- [x] watch should run once
+- [x] add help to cli
+- [x] add webpack to cli
+- [x] fix serverless
+- [x] build script to deploy to npm
+- [ ] change to lerna mono repo
+- [ ] use that npm link project https://github.com/ORESoftware/npm-link-up
+- [ ] add init for plugin, example serverless needs apibase.ts, fetch needs baseapi.ts
+- [ ] add support for required parameters in plugin
+- [ ] recursive create folder support
+- [ ] init should update your package json
+- [ ] figure out why 2FA didnt rename correctly in models
+- [ ] show support for methods in a plugin
+- [ ] "you can even have multiple plugins run in the same file"
+- [ ] remove scalar from models 
+- [ ] document handlerWrapper parameter
+- [ ] for servless plugin you need to describe how to update your yaml. do it from scratch once, youll see
+- [ ] add command to serve your graphql so your client can read it???
+- [ ] figure out how to not make sdr global, installed locally, npx?
+- [ ] fix fucking tsconfig module
+- [ ] when you run wiht no types it bunkos, add more logging "13 types processed"
+- [ ] add support for local plugins     "fix-babel": "file:plugins/fix-babel",
+- [ ] add example pages
+- [ ] document no support for custom scalars
+- [ ] add how to create your own plugin
+- [ ] fix raw fetch
+- [ ] add axios
+- [ ] add express
+- [ ] update homepage details

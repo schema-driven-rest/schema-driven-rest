@@ -1,0 +1,28 @@
+{
+  "name": "@sdr/core",
+  "version": "1.1.0",
+  "main": "output/index.js",
+  "license": "MIT",
+  "scripts": {
+    "debug": "node --inspect-brk --require ts-node/register src/index.ts",
+    "start": "node --require ts-node/register src/index.ts",
+    "build": "webpack",
+    "watch": "tsc -w",
+    "bump": "yarn build && yarn version --patch"
+  },
+  "types": "output/index.d.ts",
+  "dependencies": {
+    "graphql": "14.6.0",
+    "prettier": "1.19.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.6",
+    "@types/prettier": "^1.19.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.2",
+    "ts-loader": "^6.2.1",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@sdr/examples-simple-client",
+  "version": "1.1.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node index"
+  },
+  "dependencies": {
+    "@sdr/controller": "latest",
+    "@sdr/models": "latest",
+    "@sdr/raw-fetch": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.6",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.2"
+  }
+}

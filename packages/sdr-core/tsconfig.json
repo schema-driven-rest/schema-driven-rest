@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "noEmitOnError": false,
+    "experimentalDecorators": true,
+    "allowUnreachableCode": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "target": "es2017",
+    "declaration": true,
+    "module": "ES6",
+    "inlineSourceMap": true,
+    "resolveJsonModule": true,
+    "strictNullChecks": false,
+    "pretty": true,
+    "moduleResolution": "node",
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "outDir": "./output"
+  },
+  "exclude": [
+    "node_modules","./output"
+  ]
+}
