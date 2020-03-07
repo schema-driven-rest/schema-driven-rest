@@ -10,7 +10,7 @@
   "dependencies": {
     "@sdr/controller": "latest",
     "@sdr/models": "latest",
-    "@sdr/raw-fetch": "latest"
+    "@sdr/fetch": "latest"
   },
   "devDependencies": {
     "@types/node": "^13.7.6",

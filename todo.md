@@ -1,3 +1,18 @@
+## Before Release
+
+- [ ] add init for plugin, example serverless needs apibase.ts, fetch needs baseapi.ts
+- [ ] show support for methods in a plugin
+- [ ] "you can even have multiple plugins run in the same file"
+- [ ] document handlerWrapper parameter
+- [ ] for servless plugin you need to describe how to update your yaml. do it from scratch once, youll see
+- [ ] fix fucking tsconfig module
+- [ ] add example pages
+- [ ] document no support for custom scalars
+- [ ] add how to create your own plugin
+- [ ] fix fetch
+- [ ] add axios
+- [ ] add express example
+- [ ] update homepage details
 - [x] update plugin text to look like this: https://graphql-code-generator.com/docs/plugins/typescript-vue-apollo
 - [x] add details about hwo this was inspired by  
 - [x] https://v2.docusaurus.io/docs/using-plugins do this for npm yarn install
@@ -26,17 +41,15 @@
 - [x] recursive create folder support
 - [x] add support for required parameters in plugin
 - [x] init should update your package json
-- [ ] add init for plugin, example serverless needs apibase.ts, fetch needs baseapi.ts
-- [ ] show support for methods in a plugin
-- [ ] "you can even have multiple plugins run in the same file"
-- [ ] document handlerWrapper parameter
-- [ ] for servless plugin you need to describe how to update your yaml. do it from scratch once, youll see
-- [ ] fix fucking tsconfig module
-- [ ] add support for local plugins     "fix-babel": "file:plugins/fix-babel",
-- [ ] add example pages
-- [ ] document no support for custom scalars
-- [ ] add how to create your own plugin
-- [ ] fix raw fetch
-- [ ] add axios
-- [ ] add express
-- [ ] update homepage details
+- [x] add support for local plugins
+
+
+
+## Later
+
+- [ ] figure out how to not make sdr global, installed locally, npx?
+- [ ] figure out why 2FA didnt rename correctly in models
+- [ ] remove scalar from models 
+- [ ] add command to serve your graphql so your client can read it???
+- [ ] when you run wiht no types it bunkos, add more logging "13 types processed"
+

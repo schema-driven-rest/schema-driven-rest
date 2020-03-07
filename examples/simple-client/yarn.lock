@@ -533,6 +533,14 @@
     graphql "14.6.0"
     prettier "1.19.1"
 
+"@sdr/fetch@latest":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@sdr/fetch/-/fetch-1.1.1.tgz#550194746178beb988e9152ac86f6884fb5547c7"
+  integrity sha512-LxQ3h6B2uoQ9cfj7CgTXAlkqLsja2I9tFQpYffL/bZnW25HJmH2kuK5FMBfGF7ymZ1NIzRAj4oxN/4/1Ufz1Fw==
+  dependencies:
+    "@sdr/core" latest
+    ejs "^3.0.1"
+
 "@sdr/models@latest":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@sdr/models/-/models-1.0.21.tgz#72c24795c35aeafe8821cf4125114d867488afae"
@@ -545,14 +553,6 @@
     auto-bind "4.0.0"
     graphql "14.6.0"
     tslib "1.11.0"
-
-"@sdr/raw-fetch@latest":
-  version "1.0.24"
-  resolved "https://registry.yarnpkg.com/@sdr/raw-fetch/-/raw-fetch-1.0.24.tgz#c83bb8e4b19a602c117f0cd180b9270f175024a2"
-  integrity sha512-JGbKj0Qxf8/4j+VPKpEMheyR2o8lF4iw1Px2T1LAFbXE/A1T3FIQ2ecwXnzsoVPvYT6fEmRAdzQeALOngDNvIw==
-  dependencies:
-    "@sdr/core" latest
-    ejs "^3.0.1"
 
 "@types/node@^13.7.6":
   version "13.7.7"

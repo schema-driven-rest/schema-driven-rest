@@ -1,12 +1,10 @@
 {
-  "name": "@sdr/raw-fetch",
+  "name": "@sdr/fetch",
   "version": "1.1.1",
   "main": "output/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "bump": "yarn build && yarn version --patch --no-git-tag-version ",
-    "publish-plugin": "yarn build && yarn version --patch --no-git-tag-version && npm publish --access public"
+    "build": "tsc"
   },
   "dependencies": {
     "@sdr/core": "latest",

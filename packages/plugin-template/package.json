@@ -5,8 +5,7 @@
   "main": "output/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "bump": "yarn build && yarn version --patch"
+    "build": "tsc"
   },
   "dependencies": {
     "@sdr/core": "latest"

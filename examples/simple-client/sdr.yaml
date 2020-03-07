@@ -2,10 +2,10 @@ schema: ../common/server-schema/*.graphql
 ignoreSchema: ../common/server-schema/base.graphql
 prettier: ./.prettierrc
 config:
-  @sdr/raw-fetch:
+  @sdr/fetch:
     baseClientLocation: ./baseClient
 generates:
   api/api.ts:
     plugins:
-      - @sdr/raw-fetch
+      - @sdr/fetch
       - @sdr/models
