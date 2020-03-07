@@ -7,6 +7,7 @@ type User @controller(path: "user") {
 
   updateUser(request: UpdateUserRequest!): UserResponse!
     @request(method: POST, path: "update-user")
+    @auth
 }
 
 type LoginRequest @model {

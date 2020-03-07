@@ -22,22 +22,16 @@
 - [x] add webpack to cli
 - [x] fix serverless
 - [x] build script to deploy to npm
-- [ ] change to lerna mono repo
-- [ ] use that npm link project https://github.com/ORESoftware/npm-link-up
+- [x] change to lerna mono repo
+- [x] recursive create folder support
+- [x] add support for required parameters in plugin
+- [x] init should update your package json
 - [ ] add init for plugin, example serverless needs apibase.ts, fetch needs baseapi.ts
-- [ ] add support for required parameters in plugin
-- [ ] recursive create folder support
-- [ ] init should update your package json
-- [ ] figure out why 2FA didnt rename correctly in models
 - [ ] show support for methods in a plugin
 - [ ] "you can even have multiple plugins run in the same file"
-- [ ] remove scalar from models 
 - [ ] document handlerWrapper parameter
 - [ ] for servless plugin you need to describe how to update your yaml. do it from scratch once, youll see
-- [ ] add command to serve your graphql so your client can read it???
-- [ ] figure out how to not make sdr global, installed locally, npx?
 - [ ] fix fucking tsconfig module
-- [ ] when you run wiht no types it bunkos, add more logging "13 types processed"
 - [ ] add support for local plugins     "fix-babel": "file:plugins/fix-babel",
 - [ ] add example pages
 - [ ] document no support for custom scalars

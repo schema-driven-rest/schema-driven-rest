@@ -4,11 +4,11 @@ import * as yargs from 'yargs';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as YAML from 'yaml';
-import {PluginBody, processPlugin, SDRConfig} from '@sdr/core';
+import {PluginBody, PluginDetails, processPlugin, SDRConfig} from '@sdr/core';
 import {globFileContents} from './utils/globFileContents';
 
 export async function cli() {
-  if (yargs.argv._.some(a => a === 'init' || a === 'i')) {
+  if (yargs.argv._.some(a => a === 'init')) {
     await init();
     return;
   }
@@ -22,7 +22,7 @@ export async function cli() {
     return;
   }
   if (yargs.argv._.some(a => a === 'build' || a === 'b')) {
-    console.log('Watching files...');
+    console.log('Building files...');
     await run(false);
     return;
   }
@@ -97,43 +97,64 @@ generates:
 `,
     {encoding: 'utf8'}
   );
+
+  const packageJson = JSON.parse(fs.readFileSync(path.join(currentDirectory, 'package.json'), {encoding: 'utf8'}));
+  const dev = packageJson.devDependencies || {};
+  packageJson.devDependencies = dev;
+  packageJson.devDependencies['@sdr/controller'] = 'latest';
+  packageJson.devDependencies['@sdr/models'] = 'latest';
+  fs.writeFileSync(path.join(currentDirectory, 'package.json'), {encoding: 'utf8'});
+
   console.log('An sdr.yaml file has been created.');
 }
 
-async function getPluginBodies(outputFile: string, sdrConfig: SDRConfig) {
+async function getPluginBodies(outputFile: string, sdrConfig: SDRConfig): Promise<PluginDetails[]> {
   const config = sdrConfig.generates[outputFile];
   const {plugins} = config;
 
-  const pluginBodies: {name: string; method: string; body: PluginBody}[] = [];
+  const pluginDetails: PluginDetails[] = [];
   for (const plugin of plugins) {
-    if (plugin.includes('#')) {
+    if (plugin.includes('!')) {
+      let name = plugin.split('!')[0];
+      let type = plugin.split('!')[1];
+      if (type !== 'schema') {
+        throw 'Error: Bang syntax can only be used to import schema only';
+      }
+      let details = {
+        name: name,
+        method: 'index',
+        body: getPlugin(name, 'index'),
+      };
+      details.body.plugin = () => '';
+      pluginDetails.push(details);
+    } else if (plugin.includes('#')) {
       let name = plugin.split('#')[0];
       let method = plugin.split('#')[1];
-      pluginBodies.push({
+      pluginDetails.push({
         name: name,
         method: method,
         body: getPlugin(name, method),
       });
     } else {
-      pluginBodies.push({name: plugin, method: 'index', body: getPlugin(plugin, 'index')});
+      pluginDetails.push({name: plugin, method: 'index', body: getPlugin(plugin, 'index')});
     }
   }
 
-  for (let i = pluginBodies.length - 1; i >= 0; i--) {
-    const pluginBody = pluginBodies[i];
+  for (let i = pluginDetails.length - 1; i >= 0; i--) {
+    const pluginBody = pluginDetails[i];
     // console.log('Adding Plugin: ' + pluginBody.name, pluginBody.body.config);
     if (pluginBody.body.config.dependsOn) {
       for (const dependency of pluginBody.body.config.dependsOn) {
-        if (pluginBodies.some(p => p.name === dependency)) {
+        if (pluginDetails.some(p => p.name === dependency)) {
           continue;
         }
         // console.log('Adding Plugin: ' + dependency);
-        pluginBodies.push({name: dependency, method: 'index', body: getPlugin(dependency, 'index')});
+        pluginDetails.push({name: dependency, method: 'index', body: getPlugin(dependency, 'index')});
         //todo support better recursive
       }
     }
   }
-  return pluginBodies;
+  return pluginDetails;
 }
 
 async function run(watch: boolean) {
@@ -150,6 +171,7 @@ async function run(watch: boolean) {
     const schemaContent = contents.join('\n');
 
     for (const outputFile in sdrConfig.generates) {
+      console.log(`Processing file: ${outputFile}`);
       const pluginBodies = await getPluginBodies(outputFile, sdrConfig);
 
       let schemaWithPlugins = schemaContent;
@@ -169,7 +191,9 @@ async function run(watch: boolean) {
             outputFile.endsWith('.tsx')),
         sdrConfig.prettier && readJson(path.join(process.cwd(), sdrConfig.prettier))
       );
-
+      if (!fs.existsSync(path.dirname(outputFile))) {
+        fs.mkdirSync(path.dirname(outputFile), {recursive: true});
+      }
       fs.writeFileSync(outputFile, outputResult, {encoding: 'utf8'});
     }
   });
@@ -177,6 +201,7 @@ async function run(watch: boolean) {
 
 export function getPlugin(moduleName: string, file: string): PluginBody {
   let loadedModule = require('import-from')(process.cwd(), moduleName);
+
   if (!loadedModule) {
     throw 'Could not find plugin: ' + moduleName;
   }

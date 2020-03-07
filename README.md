@@ -1,1 +1,0 @@
-schema-driven-rest-mono

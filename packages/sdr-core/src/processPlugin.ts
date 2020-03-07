@@ -5,10 +5,11 @@ import {PluginConfig, PluginFunction, PluginOptions} from './plugins/pluginOptio
 import {buildType} from './actions';
 
 export type PluginBody = {config: PluginConfig; plugin: PluginFunction; schema: string};
+export type PluginDetails = {name: string; method: string; body: PluginBody};
 
 export function processPlugin(
   schemaWithPlugins: string,
-  pluginBodies: {name: string; method: string; body: PluginBody}[],
+  pluginDetails: PluginDetails[],
   sdrConfig: SDRConfig,
   processPrettier: boolean,
   prettierOptions: any
@@ -24,23 +25,30 @@ export function processPlugin(
       .filter(a => a.kind === 'ObjectTypeDefinition')
       .map(a => buildType(a as ObjectTypeDefinitionNode)),
   };
+  if (pluginOptions.types.length === 0) {
+    throw 'Error: No types found in schema.';
+  }
+  console.log(`  ${pluginOptions.types.length} types being processed`);
 
   let outputResult = '';
-  for (const pluginBody of pluginBodies) {
-    outputResult +=
-      pluginBody.body.plugin(
-        pluginOptions,
-        sdrConfig.config[pluginBody.name + (pluginBody.method === 'index' ? '' : +'#' + pluginBody.method)] || {}
-      ) ?? '';
+  for (const pluginDetail of pluginDetails) {
+    let pluginName = pluginDetail.name + (pluginDetail.method === 'index' ? '' : +'#' + pluginDetail.method);
+    let configOptions = sdrConfig.config[pluginName] || {};
+    const requiredParameters = pluginDetail.body.config.requiredParameters ?? [];
+    for (const requiredParameter of requiredParameters) {
+      if (!configOptions[requiredParameter]) {
+        throw `Error: ${pluginName} Requires the config parameter ${requiredParameter}.`;
+      }
+    }
+    outputResult += pluginDetail.body.plugin(pluginOptions, configOptions) ?? '';
     outputResult += '\r\n';
   }
 
   if (processPrettier) {
     prettierOptions.parser = 'typescript';
-    if (prettierOptions) {
-      outputResult = prettier.format(outputResult, {...prettierOptions, plugins: [prettierTS]});
-    }
+    outputResult = prettier.format(outputResult, {...prettierOptions, plugins: [prettierTS]});
   }
+  console.log(`  ${outputResult.length} bytes written`);
 
   return outputResult;
 }

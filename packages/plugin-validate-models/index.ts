@@ -114,8 +114,7 @@ export function plugin(options: PluginOptions, config: {}) {
       validation += 'return true;';
     }
     if (type.astNode.kind === 'EnumTypeDefinition') {
-      const values = eval('type.astNode.values');
-      for (const value of values) {
+      for (const value of type.astNode.values) {
         validation += `if(model==='${value.name.value}') return true;`;
       }
       validation += 'return false;';

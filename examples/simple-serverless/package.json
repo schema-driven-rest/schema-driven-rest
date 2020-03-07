@@ -9,9 +9,11 @@
   "private": true,
   "dependencies": {
     "@sdr/controller": "latest",
+    "@sdr/core": "latest",
     "@sdr/models": "latest",
     "@sdr/serverless-api-base": "latest",
-    "@sdr/validate-models": "latest"
+    "@sdr/validate-models": "latest",
+    "authTester": "file:plugins/authTester"
   },
   "devDependencies": {
     "@types/node": "^13.7.6",

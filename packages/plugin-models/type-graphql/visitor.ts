@@ -54,10 +54,10 @@ export class TypeGraphQLVisitor<
       enumsAsTypes: pluginConfig.enumsAsTypes || false,
       immutableTypes: pluginConfig.immutableTypes || false,
       declarationKind: {
-        type: 'class',
-        interface: 'abstract class',
-        arguments: 'class',
-        input: 'class',
+        type: 'interface',
+        interface: 'interface',
+        arguments: 'interface',
+        input: 'interface',
         scalar: 'type',
       },
       ...(additionalConfig || {}),
@@ -85,7 +85,6 @@ export class TypeGraphQLVisitor<
   }
 
   ObjectTypeDefinition(node: ObjectTypeDefinitionNode, key: number | string, parent: any): string {
-
     const originalNode = parent[key] as ObjectTypeDefinitionNode;
 
     let declarationBlock = this.getObjectTypeDeclarationBlock(node, originalNode);
@@ -145,7 +144,6 @@ export class TypeGraphQLVisitor<
       type.type = `FixDecorator<${type.type}>`;
     }
     if (type.isScalar) {
-      type.type = `Scalars['${type.type}']`;
     }
     if (type.isArray) {
       type.type = `Array<${type.type}>`;
@@ -214,7 +212,7 @@ export class TypeGraphQLVisitor<
 
     typeString = this.fixDecorator(type, typeString);
 
-    return comment + indent(`${this.config.immutableTypes ? 'readonly ' : ''}${node.name}!: ${typeString};`);
+    return comment + indent(`${this.config.immutableTypes ? 'readonly ' : ''}${node.name}: ${typeString};`);
   }
 
   InputValueDefinition(node: InputValueDefinitionNode, key?: number | string, parent?: any): string {
@@ -227,7 +225,7 @@ export class TypeGraphQLVisitor<
       ? this.buildTypeString(type)
       : this.fixDecorator(type, rawType as string);
 
-    return comment + indent(`${this.config.immutableTypes ? 'readonly ' : ''}${nameString}!: ${typeString};`);
+    return comment + indent(`${this.config.immutableTypes ? 'readonly ' : ''}${nameString}: ${typeString};`);
   }
 
   EnumTypeDefinition(node: EnumTypeDefinitionNode): string {

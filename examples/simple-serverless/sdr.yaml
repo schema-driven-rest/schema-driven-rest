@@ -5,14 +5,21 @@ config: {}
 generates:
   api/apiBase.ts:
     plugins:
+      - "authTester!schema"
       - "@sdr/serverless-api-base#classes"
       - "@sdr/models"
   serverless-api.yaml:
     plugins:
+      - "authTester!schema"
       - "@sdr/serverless-api-base#serverless"
   handler.ts:
     plugins:
+      - "authTester!schema"
       - "@sdr/serverless-api-base#handlers"
   api/validation.ts:
     plugins:
+      - "authTester!schema"
       - "@sdr/validate-models"
+  api/authTester.ts:
+    plugins:
+      - "authTester"

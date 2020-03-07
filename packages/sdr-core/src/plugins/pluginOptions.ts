@@ -29,6 +29,7 @@ export type PluginOptions = {
 
 export type PluginConfig = {
   dependsOn?: string[];
+  requiredParameters?: string[];
 };
 
 export type PluginFunction = (options: PluginOptions, config: any) => string;

@@ -2,7 +2,6 @@ directive @request(method: Method, path: String) on FIELD_DEFINITION
 directive @controller(path: String) on OBJECT
 directive @model on OBJECT
 
-directive @auth on FIELD_DEFINITION
 
 enum Method {
   POST
