@@ -4,8 +4,16 @@ prettier: ./.prettierrc
 config:
   @sdr/fetch:
     baseClientLocation: ./baseClient
+  @sdr/axios:
+    baseClientLocation: ./baseAxiosClient
 generates:
   api/api.ts:
     plugins:
+      - "authTester!schema"
       - @sdr/fetch
+      - @sdr/models
+  api/axios.ts:
+    plugins:
+      - "authTester!schema"
+      - @sdr/axios
       - @sdr/models

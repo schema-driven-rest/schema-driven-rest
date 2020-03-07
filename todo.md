@@ -9,10 +9,10 @@
 - [ ] add example pages
 - [ ] document no support for custom scalars
 - [ ] add how to create your own plugin
-- [ ] fix fetch
-- [ ] add axios
 - [ ] add express example
 - [ ] update homepage details
+- [x] fix fetch
+- [x] add axios
 - [x] update plugin text to look like this: https://graphql-code-generator.com/docs/plugins/typescript-vue-apollo
 - [x] add details about hwo this was inspired by  
 - [x] https://v2.docusaurus.io/docs/using-plugins do this for npm yarn install
