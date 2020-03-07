@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node index"
   },
+  "private": true,
   "dependencies": {
     "@sdr/controller": "latest",
     "@sdr/models": "latest",

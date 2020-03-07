@@ -6,6 +6,7 @@
   "scripts": {
     "local": "serverless offline start"
   },
+  "private": true,
   "dependencies": {
 
     "@sdr/controller": "latest",
