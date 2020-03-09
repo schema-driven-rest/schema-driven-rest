@@ -8,14 +8,15 @@
   },
   "private": true,
   "dependencies": {
+  },
+  "devDependencies": {
     "@sdr/controller": "latest",
     "@sdr/core": "latest",
     "@sdr/models": "latest",
     "@sdr/serverless-api-base": "latest",
     "@sdr/validate-models": "latest",
-    "authTester": "file:plugins/authTester"
-  },
-  "devDependencies": {
+    "authTester": "file:plugins/authTester",
+
     "@types/node": "^13.7.6",
     "prettier": "^1.19.1",
     "serverless": "^1.64.1",

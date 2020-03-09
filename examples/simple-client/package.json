@@ -8,14 +8,14 @@
   },
   "private": true,
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.19.2"
+  },
+  "devDependencies": {
     "@sdr/controller": "latest",
     "@sdr/fetch": "latest",
     "@sdr/models": "latest",
     "@sdr/axios": "latest",
-    "authTester": "file:../simple-serverless/plugins/authTester"
-  },
-  "devDependencies": {
+    "authTester": "file:../simple-serverless/plugins/authTester",
     "@types/node": "^13.7.6",
     "prettier": "^1.19.1",
     "ts-node": "^8.6.2",

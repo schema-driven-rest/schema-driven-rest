@@ -1,0 +1,18 @@
+schema: ../common/server-schema/*.graphql
+ignoreSchema: ../common/server-schema/base.graphql
+prettier: ./.prettierrc
+config: {}
+generates:
+#  api/apiBase.ts:
+#    plugins:
+#      - "authTester!schema"
+#      - "@sdr/serverless-api-base#classes"
+#      - "@sdr/models"
+  src/routes/setup.ts:
+    plugins:
+      - "authTester!schema"
+      - "@sdr/serverless-api-base#handlers"
+#  api/validation.ts:
+#    plugins:
+#      - "authTester!schema"
+#      - "@sdr/validate-models"

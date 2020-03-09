@@ -14,12 +14,10 @@ export function plugin(options: PluginOptions, config: {handlerWrapperLocation: 
         } = type.directives.find(a => a.name === 'controller');
 
     %>
-import {<%=controllerName%>Controller} from './api/<%=controllerName%>Controller';
+import {<%=controllerName%>ControllerRouter} from './routes/<%=controllerName%>Controller';
 
 <% } %>
-import {handlerWrapper} from "${config.handlerWrapperLocation}";
-
-
+export function setupRoutes(){
 <% for(const type of types) { %><%
         const controllerName = type.name;
         const {
@@ -39,9 +37,9 @@ const <%=controllerName%>ControllerInstance=new <%=controllerName%>Controller();
             const methodPath = requestDirective.parameters.find(parameter => parameter.name === 'path').value;
             const methodType = requestDirective.parameters.find(parameter => parameter.name === 'method').value;
 
-%>export const <%=controllerName%>_<%=methodName%> = handlerWrapper(<%=controllerName%>ControllerInstance.<%=methodName%>);
+%>app.use('<%=controllerPath%>', <%=controllerName%>ControllerRouter);
 <% } %><% } %>
-`,
+}`,
     {
       types: options.types.filter(a => a.directives.find(a => a.name === 'controller')),
     },
@@ -51,5 +49,4 @@ const <%=controllerName%>ControllerInstance=new <%=controllerName%>Controller();
 
 export const config: PluginConfig = {
   dependsOn: ['@sdr/controller'],
-  requiredParameters: ['handlerWrapperLocation'],
 };

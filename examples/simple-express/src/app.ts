@@ -1,7 +1,6 @@
 
 import express from 'express';
-import {router as indexRouter} from './routes';
-import {router as usersRouter} from './routes/users';
+import {setupRoutes} from './routes/setup';
 
 export const app = express();
 

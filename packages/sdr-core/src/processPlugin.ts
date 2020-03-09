@@ -32,7 +32,7 @@ export function processPlugin(
 
   let outputResult = '';
   for (const pluginDetail of pluginDetails) {
-    let pluginName = pluginDetail.name + (pluginDetail.method === 'index' ? '' : +'#' + pluginDetail.method);
+    let pluginName = pluginDetail.name + (pluginDetail.method === 'index' ? '' : `#${pluginDetail.method}`);
     let configOptions = sdrConfig.config[pluginName] || {};
     const requiredParameters = pluginDetail.body.config.requiredParameters ?? [];
     for (const requiredParameter of requiredParameters) {
